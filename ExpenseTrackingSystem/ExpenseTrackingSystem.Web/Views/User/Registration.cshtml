@@ -1,0 +1,78 @@
+﻿@model  ExpenseTrackingSystem.Web.Models.UserModels.RegisterUserModel
+@{
+    Layout = "~/Views/Shared/LayoutForm.cshtml";
+    ViewBag.Title = "Registration";
+}
+
+<script type="text/javascript" src="/Scripts/UserAccountValid.js"></script>
+
+<h2>Registration</h2>
+
+<div class="container-fluid">
+@if (!String.IsNullOrEmpty(ViewBag.Mess))
+{
+    <div class="row">
+        <div class="span5 offset4">
+            <div class="alert alert-success" align="center">
+                <i class="icon-ok"></i>
+                @ViewBag.Mess
+            </div>
+            <p class="lead text-info" align="center"> Your INFORMATION</p>
+            <p align="center"> Login : @Model.Login </p>
+            <p align="center"> Password : @Model.Password </p>
+        </div>
+    </div>
+}
+    else
+{
+
+    <div class="row-fluid">
+        <div class="offset4">
+            @using (Html.BeginForm("Registration", "User", FormMethod.Post, new { ReturnUrl = ViewBag.ReturnUrl, id = "registrationForm" }))
+            {
+                @Html.AntiForgeryToken()
+                if (@Html.ValidationSummary(true) != null)
+                {
+                    <div class="alert alert-error">
+                        @Html.ValidationSummary()
+                    </div>
+                }
+                <div class="control-group">
+                    <label class="control-label" for="Login">Login</label>
+                    <div class="controls">
+                        <div class="input-prepend">
+                            <span class="add-on"><i class="icon-key"></i></span>
+                            <input data-val-required="The Login field is required." id="Login" name="Login" type="text" value="@Model.Login" placeholder="Login" >
+                        </div>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="Password">Password</label>
+                    <div class="controls">
+                        <div class="input-prepend">
+                            <span class="add-on"><i class="icon-edit"></i></span>
+                            <input data-val-required="The Password field is required." id="Password" name="Password" type="password" placeholder="Password"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="ConfirmPassword">Confirm Password</label>
+                    <div class="controls">
+                        <div class="input-prepend">
+                            <span class="add-on"><i class="icon-check"></i></span>
+                            <input data-val-required="The confirm Password field is required." id="ConfirmPassword" name="ConfirmPassword" type="password" placeholder="Repeat password" >
+                        </div>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <div class="controls">
+                        <button class="btn btn-large btn-primary" type="submit">Registrate</button>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+        
+}
+
+</div>

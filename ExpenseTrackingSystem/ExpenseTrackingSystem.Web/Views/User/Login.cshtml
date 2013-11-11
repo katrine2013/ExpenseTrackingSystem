@@ -1,0 +1,52 @@
+﻿@model ExpenseTrackingSystem.Web.Models.UserModels.LoginUserModel
+@{
+    Layout = "~/Views/Shared/LayoutForm.cshtml";
+    ViewBag.Title = "Login";
+}
+
+<h2>Login</h2>
+<div class="container-fluid">
+    <div class="row-fluid">
+        <div class="span5 offset3">
+            @using (Html.BeginForm("Login", "User", FormMethod.Post, new { ReturnUrl = ViewBag.ReturnUrl, @class = "form-horizontal", id = "loginForm" }))
+            {
+                @Html.AntiForgeryToken()
+                if (@Html.ValidationSummary(true)!=null)
+                {
+                    <div class="alert alert-error">
+                        @Html.ValidationSummary(true)
+                    </div>                  
+                }
+
+                <div class="control-group">
+                    <label class="control-label" for="UserName">Login</label>
+                    <div class="controls">
+                        <div class="input-prepend">
+                            <span class="add-on"><i class="icon-envelope"></i></span>
+                            <input type="text" id="UserName" name="UserName" value="@Model.UserName" placeholder="Login"/>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="control-group"> 
+                    <label class="control-label" for="Password">Password</label>
+                    <div class="controls">
+                        <div class="input-prepend">
+                            <span class="add-on"><i class="icon-edit"></i></span>
+                            <input type="password" id="Password" name="Password" placeholder="Password"/>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="control-group">
+                    <div class="controls">
+                        <label class="checkbox">
+                            <input type="checkbox"  name="RememberMe" value="true" /> Remember Me
+                        </label>
+                        <button id="but" type="submit" class="btn-large btn-primary" >Sign in</button>
+                    </div>
+                </div>
+            }
+        </div>                
+    </div>
+</div>

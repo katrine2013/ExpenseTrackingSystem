@@ -1,0 +1,45 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{69CD37FC-D257-45E8-8DBB-F2B59F9C7E1A}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\NuGet.Config = .nuget\NuGet.Config
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExpenseTrackingSystem.Database", "ExpenseTrackingSystem.Database\ExpenseTrackingSystem.Database.csproj", "{A93D578E-E787-4609-94DB-D1B49BA73AAD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExpenseTrackingSystem.Database.Bootstrap", "ExpenseTrackingSystem.Database.Bootstrap\ExpenseTrackingSystem.Database.Bootstrap.csproj", "{420BA0DB-F6E9-4025-8FD6-C9B5E1C1D786}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExpenseTrackingSystem.Web", "ExpenseTrackingSystem.Web\ExpenseTrackingSystem.Web.csproj", "{B060B588-B05F-42CF-B6CD-E2ABFE741051}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExpenseTrackingSystem.Tests", "ExpenseTrackingSystem.Tests\ExpenseTrackingSystem.Tests.csproj", "{457044C5-ECA0-4D11-A0E4-F1944A2D37F4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A93D578E-E787-4609-94DB-D1B49BA73AAD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A93D578E-E787-4609-94DB-D1B49BA73AAD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A93D578E-E787-4609-94DB-D1B49BA73AAD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A93D578E-E787-4609-94DB-D1B49BA73AAD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{420BA0DB-F6E9-4025-8FD6-C9B5E1C1D786}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{420BA0DB-F6E9-4025-8FD6-C9B5E1C1D786}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{420BA0DB-F6E9-4025-8FD6-C9B5E1C1D786}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{420BA0DB-F6E9-4025-8FD6-C9B5E1C1D786}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B060B588-B05F-42CF-B6CD-E2ABFE741051}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B060B588-B05F-42CF-B6CD-E2ABFE741051}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B060B588-B05F-42CF-B6CD-E2ABFE741051}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B060B588-B05F-42CF-B6CD-E2ABFE741051}.Release|Any CPU.Build.0 = Release|Any CPU
+		{457044C5-ECA0-4D11-A0E4-F1944A2D37F4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{457044C5-ECA0-4D11-A0E4-F1944A2D37F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{457044C5-ECA0-4D11-A0E4-F1944A2D37F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{457044C5-ECA0-4D11-A0E4-F1944A2D37F4}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,74 @@
+﻿@model ExpenseTrackingSystem.Web.Models.ExpenseModels.CreateExpenseModel
+@{
+    ViewBag.Title = "New Expense";
+    Layout = "~/Views/Shared/LayoutForm.cshtml";
+}
+
+@if (!String.IsNullOrEmpty(ViewBag.Mess))
+{
+    <div class="row">
+        <div class="span5 offset4">
+            <div class="alert alert-success" align="center">
+                <i class="icon-ok"></i>
+                @ViewBag.Mess
+            </div>
+        </div>
+    </div>
+}
+
+<h2>New Expense</h2>
+<div class="container-fluid">
+    <div class="row-fluid">
+        <div class="offset4">
+            @using (Html.BeginForm("NewExpense", "Expense", FormMethod.Post, new { ReturnUrl = ViewBag.ReturnUrl, id = "registrationForm" }))
+            {
+                @Html.AntiForgeryToken()
+                if (@Html.ValidationSummary(true) != null)
+                {
+                    <div class="alert alert-error">
+                        @Html.ValidationSummary()
+                    </div>
+                }
+                <div class="control-group">
+                    <label class="control-label" for="Amount">Amount</label>
+                    <div class="controls">
+                        <div class="input-prepend">
+                            <input data-val-required="The Amount field is required." id="Amount" name="Amount" 
+                                   type="text" value="@Model.Amount" placeholder="Amount" >
+                        </div>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="DateOfMakingExpense">DateOfMakingExpense</label>
+                    <input id="DateOfMakingExpense" name="DateOfMakingExpense" style="width:200px;" type="datetime" value="@Model.DateOfMakingExpense"/>
+                </div>
+                
+                <div class="control-group">
+                    <label class="control-label" for="Description">Description</label>
+                    <div class="controls">
+                        <div class="input-prepend">
+                            <input id="Description" name="Description" type="text" 
+                                   placeholder="Description" value="@Model.Description" />
+                        </div>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="Tag">Tag</label>
+                    @Html.DropDownListFor(m => m.Tags, new SelectList(@Model.Tags, "Id", "Name"), new { size = "1", onchange = "ChangeTag()"})
+                    <input name="Tag" id="Tag" type="hidden" value="@Model.Tag" >
+                </div>
+                <div class="control-group">
+                    <div class="controls">
+                        <button class="btn btn-large btn-primary" type="submit">Save</button>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    function ChangeTag() {
+        $("#Tag").val($("#Tags").val());
+    }
+</script>

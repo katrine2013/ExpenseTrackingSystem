@@ -1,0 +1,31 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+    <div id="head">
+        @Html.Partial("HeadPartial")
+    </div>
+    <body data-spy="scroll" data-target="#menu" data-twttr-rendered="true">
+        <header>
+            <div class="container-fluid">
+                <div class="row-fluid">
+                    <div class="span12">
+                        @Html.Partial("HeaderMenu")
+                    </div>
+                </div>
+            </div>
+        </header>
+        <div id="body">
+            <div class="container">
+                <div class="row">
+                    <div class="span12">
+                        <div class="container-fluid">
+                        <section>
+                            @RenderBody()
+                        </section>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
+

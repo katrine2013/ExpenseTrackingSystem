@@ -1,0 +1,97 @@
+﻿@using ExpenseTrackingSystem.Web.Models
+@model ExpenseModels.DisplayStatisticModel
+@{
+    ViewBag.Title = "ShowExpenses";
+    Layout = "~/Views/Shared/LayoutForm.cshtml";
+}
+
+<script type="text/javascript" src="~/Scripts/ExpenseTrackingAction.js"> </script>
+
+<h2>Show Expenses</h2>
+<div class="container row offset2">
+    @using (Html.BeginForm("ShowExpenses", "Expense", FormMethod.Post, new { ReturnUrl = ViewBag.ReturnUrl, id = "statisticForm" }))
+    {
+        <div class="control-group">
+            <label class="control-label" for="BeginOfPeriod">Begin of the period</label>
+            <input id="BeginOfPeriod" name="BeginOfPeriod" type="datetime" value="@Model.BeginOfPeriod"/>
+        </div>
+
+        <div class="control-group">
+            <label class="control-label" for="EndOfPeriod">End of the period</label>
+            <input id="EndOfPeriod" name="EndOfPeriod" type="datetime" value="@Model.EndOfPeriod"/>
+        </div>
+        
+        <button type="submit" class="span2 btn-info"> Select </button>
+        
+    }
+</div>
+
+<div class="row container span2">
+    <div class="control-group">
+        <label class="row control-label label-important">Was spending: @Model.TotalAmount</label>
+    </div>
+</div>
+    
+<div class="container ">
+    <table class="table table-bordered table-hover table-condensed " >
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Tag's name</th>
+                <th>Amount</th>
+                <th>Dectription</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody id="expensesTable">
+            @{
+                foreach (ExpenseModels.DisplayExpenseModel expense in Model.AllExpenses)
+                {
+                    using (Html.BeginForm("EditExpense", "Expense", FormMethod.Post, new {ReturnUrl = ViewBag.ReturnUrl, id = "statisticForm"}))
+                    {
+                        <tr class="@expense.Id">
+                            <td><input type="hidden" name="Id" value="@expense.Id"/>
+                                <input type="text" name="DateOfMakingExpense" 
+                                       value="@expense.DateOfMakingExpense" placeholder="DateOfMakingExpense"/></td>
+                            <td><input type="text" name="NewTag" value="@expense.Tag.Name" placeholder="Tag"/></td>
+                            <td><input type="text" name="Amount" value="@expense.Amount" placeholder="Amount"/></td>
+                            <td><input type="text" name="Description" value="@expense.Description" placeholder="Description"/></td>
+                            <td class="btn-group">                       
+                                <button  type="submit" class="btn"  title="Edit record">
+                                    <i class="icon-edit"> </i> Edit
+                                </button>
+                                
+                                <button  type="button" class="btn" onclick="DeleteExpense(@expense.Id)" title="Delete record">
+                                    <i class="icon-cut"> </i> Delete
+                                </button>
+                            </td>
+                        </tr>
+                    }
+                }
+            }
+        </tbody>
+    </table>
+</div>
+
+    <table class="span4 table table-bordered table-hover container" >
+        <thead>
+            <tr>
+                <th>Tag's name</th>
+                <th>Amount</th>
+                <th>In percentage</th>
+            </tr>
+        </thead>
+        <tbody id="expensesByTagsTable">
+            @{
+                foreach (TagModels.DisplayStatisticsTagModel expense in Model.StatisticsByTag)
+                {
+                    <tr>
+                        <td>@expense.Name</td>
+                        <td>@expense.TotalAmount</td>
+                        <td>@expense.TotalAmountInPercentage % </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+

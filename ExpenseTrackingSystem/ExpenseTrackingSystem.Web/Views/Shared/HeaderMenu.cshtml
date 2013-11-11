@@ -1,0 +1,48 @@
+﻿<div class="page-header">
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="navbar-inner">                    
+            <div class="container">
+                <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+
+                @Html.ActionLink("Expense tracking system", "Index", "Home", routeValues: null, htmlAttributes: new { id = "homeLink", @class="brand"})
+                    
+                <div class="nav-collapse">
+                    <ul class="nav nav-pills pull-right">  
+                        <li>
+                           @Html.ActionLink("Registration", "Registration", "User", routeValues: null, htmlAttributes: new { id = "registerLink" })
+                        </li>
+                        
+                        @if (User.Identity.IsAuthenticated)
+                        {                               
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Welcome, @User.Identity.Name<b class="caret"></b></a>  
+                                <ul class="dropdown-menu">
+                                    <li>@Html.ActionLink("Show my expense", "ShowExpenses", "Expense", null, new { id = "ShowExpenses" })</li>
+                                    <li>@Html.ActionLink("Add expense", "NewExpense", "Expense", null, new {id = "NewExpense"})</li>
+                                    <li>@Html.ActionLink("Tags system", "AllMyTags", "Tag", null, new {id = "NewTag"})</li>
+                                </ul>
+                            </li>
+                            <li>
+                                @using (Html.BeginForm("SignOut", "User", FormMethod.Post, new { id = "logoutForm", @class = "navbar-form" })) 
+                                {
+                                    @Html.AntiForgeryToken()
+                                    <button class="btn btn-link"  type="submit" name="exit" >Sign out</button>
+                                }
+                            </li>
+                        }
+                        else
+                        {
+                            <li >
+                                @Html.ActionLink("Sign In", "Login", "User", routeValues: null, htmlAttributes: new { id = "loginLink" })
+                            </li>
+                        }
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

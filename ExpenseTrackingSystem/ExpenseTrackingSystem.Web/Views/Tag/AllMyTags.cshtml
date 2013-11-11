@@ -1,0 +1,45 @@
+﻿@using ExpenseTrackingSystem.Web.Models
+@model IEnumerable<TagModels.CreateTagModel>
+@{
+    Layout = "~/Views/Shared/LayoutForm.cshtml";
+    ViewBag.Title = "Add new tag";
+}
+
+<h2>My tags system</h2>
+<table class=" span4 table table-bordered table-hover table-condensed" >
+    <thead>
+        <tr>
+            <th>Tag's name</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody id="tagsTable">
+        @{
+            using (Html.BeginForm("NewTag", "Tag", FormMethod.Post))
+                            {
+                                <tr>
+                                    <td><input type="text" name="Name" placeholder="Tag"/></td>
+                                    <td><button type="submit" class="btn" title="New tag">
+                                             <i class="icon-pencil"> </i> Add new 
+                                        </button></td>
+                                </tr>                
+                            }   
+            foreach (TagModels.CreateTagModel tag in Model)
+            {
+                <tr class="@tag.Id">
+                    <td><input id="@tag.Id" type="text" name="TagName" value="@tag.Name" placeholder="Tag"/></td>
+                    <td class="btn-group">                       
+                        <button  type="button" class="btn" onclick="EditTag(@tag.Id)" title="Edit tag">
+                            <i class="icon-edit"> </i> Edit
+                        </button>
+                        <button  type="button" class="btn" onclick="DeleteTag(@tag.Id)" title="Delete tag">
+                            <i class="icon-cut"> </i> Delete
+                        </button>
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
+
+<script type="text/javascript" src="~/Scripts/TagActions.js"> </script>
